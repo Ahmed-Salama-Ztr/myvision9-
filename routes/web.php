@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Site1Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('about',function(){
     return 'About us';
 });
+Route::get('contact',function(){
+    return 'Hello contact';
+});
+Route::get('site1/about',[Site1Controller::class,'index'])->name('index');
+
