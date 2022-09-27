@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Site1Controller;
 use App\Http\Controllers\Site2Controller;
+use App\Http\Controllers\Site3Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +35,22 @@ Route::prefix('site2')->name('site2.')->group(function(){
     Route::get('/post',[Site2Controller::class,'post'])->name('post');
     Route::get('/contact',[Site2Controller::class,'contact'])->name('contact');
 });
+
+Route::prefix('site3')->name('site3.')->group(function(){
+    Route::get('/',[Site3Controller::class,'index'])->name('index');
+    Route::get('about',[Site3Controller::class,'about'])->name('about');
+    Route::get('experience',[Site3Controller::class,'experience'])->name('experience');
+    Route::get('education',[Site3Controller::class,'education'])->name('education');
+    Route::get('skills',[Site3Controller::class,'skills'])->name('skills');
+    Route::get('interests',[Site3Controller::class,'interests'])->name('interests');
+    Route::get('awards',[Site3Controller::class,'awards'])->name('awards');
+});
+
+Route::get('form1',[FormController::class,'form1'])->name('form1');
+Route::post('form1',[FormController::class,'form1_data'])->name('form1_data');
+
+Route::get('form2',[FormController::class,'form2'])->name('form2');
+Route::post('form2',[FormController::class,'form2_data'])->name('form2_data');
+
+Route::get('form3',[FormController::class,'form3'])->name('form3');
+Route::post('form3',[FormController::class,'form3_data'])->name('form3_data');
