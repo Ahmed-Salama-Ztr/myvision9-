@@ -14,15 +14,15 @@
         {{-- {{ csrf_field() }} --}}
         @csrf
         <div class="mb-3">
-            <label for="">Name</label>
+            <label>Name</label>
             <input name="name" type="text" class="form-control" placeholder="Name">
         </div>
         <div class="mb-3">
-            <label for="">Email</label>
+            <label>Email</label>
             <input type="text" name="email" class="form-control" placeholder="Email ">
         </div>
         <div class="mb-3">
-            <label for="">Age</label>
+            <label>Age</label>
             <input type="text" name="age" class="form-control" placeholder="age ">
         </div>
         <button class="btn btn-success btn-lg w-25 mt-5">Send</button>
