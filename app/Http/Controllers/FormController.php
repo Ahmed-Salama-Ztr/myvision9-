@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TestMail;
+use App\Mail\ContactMail;
+use App\Mail\ContactUsMail;
 use Illuminate\Http\Request;
 
 use function GuzzleHttp\Promise\all;
+use Illuminate\Support\Facades\Mail;
 
 class FormController extends Controller
 {
@@ -32,10 +36,12 @@ class FormController extends Controller
         {
             // dd($request->all());
 
-            $name = $request->name;
-            $email = $request->email;
-            $message = $request->message;
-            return view('forms.form2_data',compact('name','email','message'));
+            // $name = $request->name;
+            // $email = $request->email;
+            // $message = $request->message;
+            // return view('forms.form2_data',compact('name','email','message'));
+
+            // Mail::to('admin@example.com')->send(new ContactUsMail($request->except('_token')));
 
         }
 
@@ -128,5 +134,38 @@ class FormController extends Controller
 
             return view('forms.full_form_data',compact('name','email','age','img_name','bio','phone','gender','intersets','country'));
 
+        }
+
+        public function contact_us()
+        {
+                return view('forms.contact_us');
+        }
+
+        public function contact_us_data(Request $request)
+        {
+            // dd($request->all());
+
+            $request->validate([
+                'name' => 'required|min:3',
+                'email' => 'required',
+                'message' => 'required',
+                'image' => 'required|image|mimes:png,jpg|max:2048',
+            ]);
+
+            $name = $request->name;
+            $email = $request->email;
+            $message = $request->message;
+
+            $img_name = rand().'_'.rand().time().$request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('uploads'), $img_name);
+
+            $data = $request->except('_token');
+            $data['image'] = $img_name;
+
+            // dd($request->all());
+
+
+
+            Mail::to('ahmed.zo.2001.sa@gmail.com')->send(new ContactMail($data));
         }
 }

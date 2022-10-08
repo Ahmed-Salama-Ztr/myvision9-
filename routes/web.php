@@ -60,3 +60,7 @@ Route::post('form4',[FormController::class,'form4_data'])->name('form4_data');
 
 Route::get('/full-form',[FormController::class,'full_form'])->name('full_form');
 Route::post('/full-form',[FormController::class,'full_form_data'])->name('full_form_data');
+
+
+Route::get('contact-us', [FormController::class, 'contact_us'])->name('contact_us');
+Route::post('contact-us', [FormController::class, 'contact_us_data'])->name('contact_us_data');

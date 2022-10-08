@@ -172,7 +172,7 @@
                     bar.style.width = 25*i + '%';
                     i++;
                 }, 500);
-                console.log('hello');
+                // console.log('hello');
         }
         </script>
 
